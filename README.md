@@ -27,7 +27,116 @@
   現在、新規登録機能を実装中。<br>
   その後、トピック投稿機能、コメント機能などを実装予定。
 # データベース設計
-  現在作成中
+ [![Image from Gyazo](https://i.gyazo.com/6588f57d3355c9c98378957a052fffcc.png)](https://gyazo.com/6588f57d3355c9c98378957a052fffcc)
+
+# テーブル設計
+
+## Users テーブル
+|Column             |Type    |Options                  |
+|-------------------|--------|-------------------------|
+|name               |string  |null: false              |
+|email              |string  |null: false, unique:true |
+|encrypted_password |string  |null: false              |
+|age_id             |integer |null: false              |
+|subject_id         |integer |null: false              |
+|prefecture_id      |integer |null: false              |
+|operation_id       |integer |null: false              |
+|schooltype_id      |integer |null: false              |
+|school_name        |string  |null: false              |
+
+### Association
+- has_many :sns_credentials
+- has_many :topics
+- has_many :comments
+- has_many :likes
+- has_many :active_relationships, class_name: "Relationship", foreign_key: :following_id
+- has_many :followings, through: :active_relationships, source: :follower
+- has_many :passive_relationships, class_name: "Relationship", foreign_key: :follower_id
+- has_many :followers, through: :passive_relationships, source: :following
+
+
+## SnsCredentials テーブル
+|Column   |Type       |Options                        |
+|---------|-----------|-------------------------------|
+|provider |string     |null: false                    |
+|uid      |string     |null: false                    |
+|user     |references |null: false, foreign_key: true |
+
+### Association
+- belongs_to :user, optional: true
+
+
+## Topics テーブル
+|Column        |Type       |Options                        |
+|--------------|-----------|-------------------------------|
+|topic_title   |string     |null: false                    |
+|topic_content |text       |null: false                    |
+|user          |references |null: false, foreign_key: true |
+
+### Association
+- belongs_to :user
+- has_many :tags
+- has_many :topic_tag_relationships
+- has_many :comments
+
+## Tags テーブル
+|Column   |Type   |Options     |
+|---------|-------|------------|
+|tag_name |string |null: false |
+
+### Association
+- has_many :topics
+- has_many :topic_tag_relationships
+
+
+## TopicTagRelations テーブル
+|Column|Type       |Options                        |
+|------|-----------|-------------------------------|
+|topic |references |null: false, foreign_key: true |
+|tag   |references |null: false, foreign_key: true |
+
+### Association
+- belongs_to :user
+- belongs_to :tag
+
+
+## Comments テーブル
+|Column        |Type       |Options                        |
+|--------------|-----------|-------------------------------|
+|topic_content |text       |null: false                    |
+|user          |references |null: false, foreign_key: true |
+|topic         |references |null: false, foreign_key: true |
+
+### Association
+- belongs_to :user
+- belongs_to :comment
+- has_many :likes
+
+
+## Likes テーブル
+|Column  |Type       |Options                        |
+|--------|-----------|-------------------------------|
+|user    |references |null: false, foreign_key: true |
+|comment |references |null: false, foreign_key: true |
+
+### Association
+- belongs_to :user
+- belongs_to :comment
+
+
+## Relationships テーブル
+|Column    |Type       |Options                        |
+|----------|-----------|-------------------------------|
+|following |references |null: false, foreign_key: true |
+|follower  |references |null: false, foreign_key: true |
+
+### Association
+- belongs_to :following, class_name: "User"
+- belongs_to :follower, class_name: "User"
+- has_many :followings, through: :active_relationships, source: :follower
+- has_many :followers, through: :passive_relationships, source: :following
+
+
 # 画面遷移図
   現在作成中
 # 開発環境
@@ -40,3 +149,4 @@
   % yarn install<br>
 # 工夫したポイント
   現在作成中
+
