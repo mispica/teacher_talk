@@ -11,5 +11,5 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :genre_id, :subject_id, :prefecture_id, :operation_id, :schooltype_id,  numericality: { other_than: 1 , message: "can't be blank"}
+  validates :age_id, :subject_id, :prefecture_id, :operation_id, :schooltype_id,  numericality: { other_than: 1 , message: "can't be blank"}
 end
