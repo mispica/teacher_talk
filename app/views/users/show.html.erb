@@ -1,0 +1,5 @@
+<div class="contents row">
+  <p><%= @name %>さんの投稿一覧</p>
+  <p><%= link_to "アカウント情報を編集する", edit_user_path(current_user) %></p>
+  <p><%= link_to "アカウント情報を削除する", user_path(current_user), method: :delete %> </p>
+</div>

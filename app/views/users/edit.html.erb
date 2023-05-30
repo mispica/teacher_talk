@@ -8,6 +8,7 @@
     </div>
     <div class='account-page__inner--right user-form'>
       <%= form_with model: current_user, local: true do |f|%>
+      
         <div class='field'>
           <div class='field-label'>
             <%= f.label :name%>
@@ -18,10 +19,50 @@
         </div>
         <div class='field'>
           <div class='field-label'>
-            <%= f.label :email%>
+            <%= f.label :age_id %>
           </div>
           <div class='field-input'>
-            <%= f.email_field :email%>
+            <%= f.collection_select(:age_id, Age.all, :id, :name, {}, {class:"field-select"}) %>
+          </div>
+        </div>
+        <div class='field'>
+          <div class='field-label'>
+            <%= f.label :subject_id %>
+          </div>
+          <div class='field-input'>
+            <%= f.collection_select(:subject_id, Subject.all, :id, :name, {}, {class:"field-select"}) %>
+          </div>
+        </div>
+        <div class='field'>
+          <div class='field-label'>
+            <%= f.label :prefecture_id %>
+          </div>
+          <div class='field-input'>
+            <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {}, {class:"field-select"}) %>
+          </div>
+        </div>
+        <div class='field'>
+          <div class='field-label'>
+            <%= f.label :operation_id %>
+          </div>
+          <div class='field-input'>
+            <%= f.collection_select(:operation_id, Operation.all, :id, :name, {}, {class:"field-select"}) %>
+          </div>
+        </div>
+        <div class='field'>
+          <div class='field-label'>
+            <%= f.label :schooltype_id %>
+          </div>
+          <div class='field-input'>
+            <%= f.collection_select(:schooltype_id, Schooltype.all, :id, :name, {}, {class:"field-select"}) %>
+          </div>
+        </div>
+        <div class='field'>
+          <div class='field-label'>
+            <%= f.label :school_name%>
+          </div>
+          <div class='field-input'>
+            <%= f.text_field :school_name %>
           </div>
         </div>
         <div class='actions'>
