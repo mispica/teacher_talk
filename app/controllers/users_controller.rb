@@ -5,16 +5,21 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find(params[:id])
   end
 
   def update
-    current_user.update(user_params)
+    user = User.find(params[:id])
+    if user.update(user_params)
+      redirect_to "/users/#{current_user.id}"
+    else
+      render :edit
+    end
   end
 
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    flash[:notice] = "アカウントを削除しました"
     redirect_to root_path
   end
   
