@@ -27,6 +27,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:google_oauth2]
-
   validates :age_id, :subject_id, :prefecture_id, :operation_id, :schooltype_id,  numericality: { other_than: 1 , message: "can't be blank"}
+  
+  with_options presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: '全角文字を使用してください' } do
+    validates :name
+    validates :school_name
+  end
 end
