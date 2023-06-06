@@ -7,10 +7,11 @@
     </div>
     <div class='account-page__inner--right user-form'>
       <%= form_with model: resource, as: resource_name, url: registration_path(resource_name), local: true do |f|%>
-        <%= render "devise/shared/error_messages", resource: resource %>
+        <%= render "shared/error_messages", model: f.object %>
         <div class='field'>
           <div class='field-label'>
             <%= f.label :name%>
+            <i>(フルネーム（全角日本語)</i>
           </div>
           <div class='field-input'>
             <%= f.text_field :name, autofocus: true%>
@@ -30,7 +31,7 @@
         <div class='field'>
           <div class='field-label'>
             <%= f.label :password%>
-            <i>(英数字6文字以上)</i>
+            <i>(半角英数字6文字以上)</i>
           </div>
           <div class='field-input'>
             <%= f.password_field :password, autocomplete: "off"%>
@@ -90,7 +91,7 @@
             <%= f.label :school_name%>
           </div>
           <div class='field-input'>
-            <%= f.text_field :school_name %>
+            <%= f.text_field :school_name, placeholder: "例：〇〇中学校,〇〇高等学校,〇〇中学校・高等学校" %>
           </div>
         </div>
         <div class='actions'>

@@ -1,5 +1,7 @@
 <div class="contents row">
   <p><%= @name %>さんの投稿一覧</p>
+  <% if user_signed_in? && current_user.id == @user.id %>
   <p><%= link_to "アカウント情報を編集する", edit_user_path(current_user) %></p>
   <p><%= link_to "アカウント情報を削除する", user_path(current_user), method: :delete %> </p>
+  <% end %>
 </div>
