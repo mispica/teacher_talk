@@ -1,1 +1,10 @@
-<h1>TeacherTalk</h1>
+<div class="contents row">
+  <% @topics.each do |topic| %>
+    <div class="topic_title">
+      タイトル：<%= topic.topic_title %>
+    </div>
+    <div class="topic_content">
+      投稿者：<%= topic.user.name %>
+    </div>
+  <% end %>
+</div>

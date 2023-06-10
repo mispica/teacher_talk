@@ -6,6 +6,7 @@ class User < ApplicationRecord
   belongs_to :operation
   belongs_to :schooltype
 
+  has_many :topics
   has_many :sns_credentials, dependent: :destroy
 
   def self.from_omniauth(auth)
