@@ -14,3 +14,9 @@ ja:
         operation_id: 国立・公立・私立
         schooltype_id: 学校種別
         school_name: 学校名
+    models:
+      topic: トピック
+    attributes:
+      topic:
+        topic_title: タイトル
+        topic_content: 本文

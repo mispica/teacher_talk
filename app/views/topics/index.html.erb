@@ -4,7 +4,8 @@
       タイトル：<%= topic.topic_title %>
     </div>
     <div class="topic_content">
-      投稿者：<%= topic.user.name %>
+      投稿者：<%= topic.user.name %>/<%= topic.user.school_name %>
     </div>
+    <%= link_to '詳細', topic_path(topic.id) %>
   <% end %>
 </div>

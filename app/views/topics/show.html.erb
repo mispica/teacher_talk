@@ -1,0 +1,14 @@
+<div class="topic_title">
+  タイトル：<%= @topic.topic_title %>
+</div>
+<div class="topic_content">
+  内容：<%= @topic.topic_content %>
+</div>
+<div class="topic_content">
+  投稿者：<%= @topic.user.name %>/<%= @topic.user.school_name %>
+</div>
+
+<% if current_user.id == @topic.user_id %>
+<%= link_to '編集', edit_topic_path(@topic.id), method: :get %>
+<%= link_to '削除', topic_path(@topic.id), method: :delete %>
+<% end %>
