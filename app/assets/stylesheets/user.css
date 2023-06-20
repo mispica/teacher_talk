@@ -6,6 +6,7 @@
   border: 1px solid #ddd;
   border-radius: 5px;
 }
+
 .account-page .account-page__inner .account-page__inner--left, .account-page .account-page__inner .account-page__inner--right {
   float: left;
   width: 50%;
@@ -20,23 +21,25 @@
   letter-spacing: 3px;
   font-size: 40px;
   font-weight: 200;
+  color: #88672a;
 }
 .account-page .account-page__header h2:after {
   content: "";
   display: block;
   width: 60px;
   margin-top: 5px;
-  border-bottom: 1px solid #38aef0;
+  border-bottom: 1px solid #88672a;
 }
 .account-page .account-page__header h5 {
   margin-bottom: 20px;
   font-size: 14px;
   font-weight: 200;
+  color: #88672a;
 }
 .account-page .account-page__header .btn {
   margin-top: 20px;
-  color: #fff;
-  background-color: #ccc;
+  color: #88672a;
+  background-color: #e1d5ca;
   font-size: 14px;
 }
 .account-page .field {
@@ -47,6 +50,7 @@
   letter-spacing: 1px;
   font-size: 14px;
   font-weight: 200;
+  color: #88672a;
 }
 .account-page .field .field-label i {
   font-size: 11px;
@@ -60,6 +64,7 @@
   width: 100%;
   padding: 10px;
   letter-spacing: 1px;
+  border: 1px solid #ddd;
 }
 .account-page .btn {
   display: inline-block;
@@ -75,11 +80,12 @@
   float: left;
   margin-top: 20px;
   color: #fff;
-  background-color: #38aef0;
+  background-color: #88672a;
 }
+
 .account-page .field-label .field_with_errors {
   display: inline-block;
-  color: #d65f4c;
+  color: #ab4839;
   font-weight: 400;
 }
 .account-page .field-input .field_with_errors {
@@ -93,7 +99,7 @@
   right: 0;
   bottom: 0;
   width: 5px;
-  background-color: #d65f4c;
+  background-color: #ab4839;
 }
 
 #error_explanation {
@@ -104,7 +110,7 @@
 }
 #error_explanation h2 {
   margin-bottom: 10px;
-  color: #d65f4c;
+  color: #ab4839;
   font-size: 14px;
 }
 #error_explanation ul {
@@ -116,4 +122,5 @@
   margin: 0;
   padding: 0;
   font-size: 13px;
+  color: #ab4839;
 }

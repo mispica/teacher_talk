@@ -1,11 +1,32 @@
-<div class="contents row">
-  <% @topics.each do |topic| %>
-    <div class="topic_title">
-      タイトル：<%= topic.topic_title %>
-    </div>
-    <div class="topic_content">
-      投稿者：<%= topic.user.name %>/<%= topic.user.school_name %>
-    </div>
-    <%= link_to '詳細', topic_path(topic.id) %>
-  <% end %>
+<div class="index-main">
+  <div class="topic-contents">
+      <% @topics.each do |topic| %>
+      <div class="topic-content">
+        <div class="comment">
+          <div class="comment__num">
+            0
+          </div>
+          <div class="comment__unit">
+            comments
+          </div>
+        </div>
+        <div class="topic">
+          <div class="topic-top">
+            <div class="topic-top__title">
+              <%= topic.topic_title %>
+            </div>
+            <div class="topic-top__show-btn">
+              <%= link_to '詳細', topic_path(topic.id) %>
+            </div>
+          </div>
+          <div class="topic-middle">
+            <%= topic.topic_content %>
+          </div>
+          <div class="topic-bottom">
+            投稿者：<%= topic.user.name %>/<%= topic.user.school_name %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+  </div>
 </div>
