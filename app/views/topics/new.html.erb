@@ -1,0 +1,17 @@
+<div class="topic_containers">
+  <h3>トピックを投稿する</h3>
+  <div class="topic_form">
+    <%= form_with model: @topic, local: true do |f| %>
+    <%= render "shared/error_messages", model: f.object %>
+      <div class='title_field'>
+        <%= f.text_field :topic_title, autofocus: true, placeholder: "タイトル" %>
+      </div>
+      <div class='text_field'>
+        <%= f.text_area :topic_content, placeholder: "本文", rows: "10" %>
+      </div>
+      <div class='topic_btn'>
+        <%= f.submit "投稿" %>
+      </div>
+    <% end %>
+  </div>
+</div>

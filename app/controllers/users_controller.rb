@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   def show
     @name = @user.name
+    @topics = @user.topics
   end
 
   def edit
