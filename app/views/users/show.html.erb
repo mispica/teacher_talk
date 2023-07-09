@@ -1,7 +1,38 @@
 <div class="contents row">
-  <p><%= @name %>さんの投稿一覧</p>
   <% if user_signed_in? && current_user.id == @user.id %>
-  <p><%= link_to "アカウント情報を編集する", edit_user_path(current_user) %></p>
-  <p><%= link_to "アカウント情報を削除する", user_path(current_user), method: :delete %> </p>
+  
+  <div><%= link_to "アカウント情報を編集する", edit_user_path(current_user) %></div>
+  <div><%= link_to "アカウント情報を削除する", user_path(current_user), method: :delete %> </div>
   <% end %>
+  <div><%= @name %>さんの投稿一覧</div>
+  <div class="index-main">
+  <div class="topic-contents">
+      <% @topics.each do |topic| %>
+      <div class="topic-content">
+        <div class="comment">
+          <div class="comment__num">
+            0
+          </div>
+          <div class="comment__unit">
+            comments
+          </div>
+        </div>
+        <div class="topic">
+          <div class="topic-top">
+            <div class="topic-top__title">
+              <%= topic.topic_title %>
+            </div>
+            <div class="topic-top__show-btn">
+              <%= link_to '詳細', topic_path(topic.id) %>
+            </div>
+          </div>
+          <div class="topic-middle">
+            <%= topic.topic_content %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+  </div>
+</div>
+
 </div>

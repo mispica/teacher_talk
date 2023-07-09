@@ -1,14 +1,56 @@
-<div class="topic_title">
-  タイトル：<%= @topic.topic_title %>
-</div>
-<div class="topic_content">
-  内容：<%= @topic.topic_content %>
-</div>
-<div class="topic_content">
-  投稿者：<%= @topic.user.name %>/<%= @topic.user.school_name %>
-</div>
+<div class="show-main">
+  <div class="show-contents">
+  <% if current_user.id == @topic.user_id %>
+  <%= link_to '編集', edit_topic_path(@topic.id), method: :get %>
+  <%= link_to '削除', topic_path(@topic.id), method: :delete %>
+  <% end %>
+    <%# 質問内容の表示 %>
+    <div class="show-question">
+      <div class="show-question__title">
+        <%= @topic.topic_title %>
+      </div>
+      <div class="show-question__content">
+        <%= @topic.topic_content %>
+      </div>
+      <div class="show-question__name">
+        <%= @topic.user.name %>/<%= @topic.user.school_name %>
+      </div>
+    </div>
+  </div>
 
-<% if current_user.id == @topic.user_id %>
-<%= link_to '編集', edit_topic_path(@topic.id), method: :get %>
-<%= link_to '削除', topic_path(@topic.id), method: :delete %>
-<% end %>
+    <%# 回答投稿フォームの表示 
+    <div class="show-answer-form">
+      <%= form_with(model: [@topic, @answer], local: true) do |form|
+        <div class="show-answer-form__heading">
+          コメントする
+        </div>
+        <div class="show-answer-form__content">
+          <%= form.text_area :content, placeholder: "コメントする", rows: "4" 
+        </div>
+        <div class="show-answer-form__name">
+          <%= form.text_field :name, placeholder: "投稿者名" 
+        <div class="show-answer-form__submit">
+          <%= form.submit "POST" 
+        </div>
+        <% end  
+      </div> %>
+       
+
+      <%# 回答一覧の表示 
+      <div class="show-answers">
+        <div class="answers-heading">
+          コメント一覧：
+        </div>
+        <% @answers.each do |answer| 
+          <div class="answer-content">
+            <div class="answer-content__text">
+              <%= answer.content 
+            </div>
+            <div class="answer-content__name">
+              <%= answer.name 
+            </div>
+          </div>
+        <% end 
+      </div>  
+  </div>%>
+</div>
