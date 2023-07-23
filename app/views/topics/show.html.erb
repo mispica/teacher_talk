@@ -4,6 +4,7 @@
   <%= link_to '編集', edit_topic_path(@topic.id), method: :get %>
   <%= link_to '削除', topic_path(@topic.id), method: :delete %>
   <% end %>
+
     <%# 質問内容の表示 %>
     <div class="show-question">
       <div class="show-question__title">
@@ -13,44 +14,39 @@
         <%= @topic.topic_content %>
       </div>
       <div class="show-question__name">
-        <%= @topic.user.name %>/<%= @topic.user.school_name %>
+        <%= link_to @topic.user.name, "/users/#{@topic.user_id}"%> /<%= @topic.user.school_name %>
       </div>
     </div>
   </div>
-
-    <%# 回答投稿フォームの表示 
-    <div class="show-answer-form">
-      <%= form_with(model: [@topic, @answer], local: true) do |form|
-        <div class="show-answer-form__heading">
-          コメントする
-        </div>
-        <div class="show-answer-form__content">
-          <%= form.text_area :content, placeholder: "コメントする", rows: "4" 
-        </div>
-        <div class="show-answer-form__name">
-          <%= form.text_field :name, placeholder: "投稿者名" 
-        <div class="show-answer-form__submit">
-          <%= form.submit "POST" 
-        </div>
-        <% end  
-      </div> %>
        
 
-      <%# 回答一覧の表示 
+      <%# 回答一覧の表示 %>
       <div class="show-answers">
         <div class="answers-heading">
-          コメント一覧：
+          <コメント一覧>
         </div>
-        <% @answers.each do |answer| 
+        <% @comments.each do |comment| %>
           <div class="answer-content">
             <div class="answer-content__text">
-              <%= answer.content 
+              <%= comment.comment_content %>
             </div>
             <div class="answer-content__name">
-              <%= answer.name 
+              <%= link_to comment.user.name, "/users/#{comment.user_id}"%> / <%= comment.user.school_name %>
             </div>
           </div>
-        <% end 
+        <% end %>
       </div>  
-  </div>%>
+  </div>
+
+  <%# コメント投稿フォームの表示 %>
+    <div class="show-answer-form">
+      <%= form_with(model: [@topic, @comment], local: true) do |form| %>
+        <div class="show-answer-form__content">
+          <%= form.text_area :comment_content, placeholder: "コメントする", rows: "4" %>
+        </div>
+        <div class="show-answer-form__submit">
+          <%= form.submit "投稿" %>
+        </div>
+        <% end %>
+    </div>
 </div>

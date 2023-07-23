@@ -8,6 +8,7 @@ class User < ApplicationRecord
 
   has_many :topics
   has_many :sns_credentials, dependent: :destroy
+  has_many :comments
 
   def self.from_omniauth(auth)
     sns = SnsCredential.where(provider: auth.provider, uid: auth.uid).first_or_create
