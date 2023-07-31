@@ -1,8 +1,12 @@
 class CommentsController < ApplicationController
   def create
-    comment = Comment.create(comment_params)
-    redirect_to "/topics/#{comment.topic.id}"
-  end
+    @comment = Comment.new(comment_params)
+    if @comment.save
+      redirect_to "/topics/#{@comment.topic.id}"
+    else
+      redirect_to "/topics/#{@comment.topic.id}", flash: { error: @comment.errors.full_messages }
+    end
+  end 
 
   private
 

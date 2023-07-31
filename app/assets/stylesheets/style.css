@@ -273,6 +273,7 @@ form input[type="submit"]:hover {
 .answer-content {
   width: 700px;
   margin: 0 auto;
+  margin-top: 15px;
   background-color: #FFFFFF;
   border-radius: 5px;
   border: 1px solid #3A3736;

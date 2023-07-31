@@ -39,6 +39,8 @@ ja:
         operation_id: 国立・公立・私立
         schooltype_id: 学校種別
         school_name: 学校名
+      comment:
+        comment_content: コメント
   devise:
     confirmations:
       confirmed: メールアドレスが確認できました。

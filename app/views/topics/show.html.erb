@@ -40,12 +40,19 @@
 
   <%# コメント投稿フォームの表示 %>
     <div class="show-answer-form">
-      <%= form_with(model: [@topic, @comment], local: true) do |form| %>
+      <%= form_with(model: [@topic, @comment], local: true) do |f| %>
+      <% if flash[:error].present? %>
+         <ul class="errors">
+          <% flash[:error].each do |e| %>
+            <li><%= e %></li>
+          <% end %>
+        </ul>
+     <% end %>
         <div class="show-answer-form__content">
-          <%= form.text_area :comment_content, placeholder: "コメントする", rows: "4" %>
+          <%= f.text_area :comment_content, placeholder: "コメントする", rows: "4" %>
         </div>
         <div class="show-answer-form__submit">
-          <%= form.submit "投稿" %>
+          <%= f.submit "投稿" %>
         </div>
         <% end %>
     </div>
