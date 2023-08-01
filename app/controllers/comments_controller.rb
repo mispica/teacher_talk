@@ -1,12 +1,24 @@
 class CommentsController < ApplicationController
+
   def create
     @comment = Comment.new(comment_params)
     if @comment.save
       redirect_to "/topics/#{@comment.topic.id}"
     else
-      redirect_to "/topics/#{@comment.topic.id}", flash: { error: @comment.errors.full_messages }
+      flash[:alert] = "コメントを入力してください"
+      redirect_to "/topics/#{@comment.topic.id}"
     end
   end 
+
+  def destroy
+    @comment = Comment.find(params[:id])
+    if current_user.id == @comment.user_id
+      @comment.destroy
+      redirect_to root_path
+    else
+      redirect_to "/topics/#{@comment.topic.id}"
+    end
+  end
 
   private
 

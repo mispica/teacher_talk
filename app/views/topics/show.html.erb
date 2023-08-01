@@ -27,6 +27,9 @@
         </div>
         <% @comments.each do |comment| %>
           <div class="answer-content">
+          <div class="answer-content_delete">
+            <%= link_to "削除", topic_comment_path(comment.topic.id, comment.id), method: :delete %>
+          </div>
             <div class="answer-content__text">
               <%= comment.comment_content %>
             </div>
@@ -41,13 +44,9 @@
   <%# コメント投稿フォームの表示 %>
     <div class="show-answer-form">
       <%= form_with(model: [@topic, @comment], local: true) do |f| %>
-      <% if flash[:error].present? %>
-         <ul class="errors">
-          <% flash[:error].each do |e| %>
-            <li><%= e %></li>
-          <% end %>
-        </ul>
-     <% end %>
+      <% flash.each do |message_type, message| %>
+        <div class="comment_alert"><%= message %></div>
+      <% end %>
         <div class="show-answer-form__content">
           <%= f.text_area :comment_content, placeholder: "コメントする", rows: "4" %>
         </div>
